@@ -1,0 +1,491 @@
+Scaffold-DbContext "Data Source=DESKTOP-5QQ2JO6;Initial Catalog=db_core_sp_call;Trusted_connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models/DB
+USE [db_core_sp_call]  
+GO  
+/****** Object:  StoredProcedure [dbo].[GetProductByPriceGreaterThan1000]    Script Date: 10/9/2018 2:47:29 PM ******/  
+DROP PROCEDURE [dbo].[GetProductByPriceGreaterThan1000]  
+GO  
+/****** Object:  StoredProcedure [dbo].[GetProductByID]    Script Date: 10/9/2018 2:47:29 PM ******/  
+DROP PROCEDURE [dbo].[GetProductByID]  
+GO  
+/****** Object:  Table [dbo].[tbl_vendor]    Script Date: 10/9/2018 2:47:29 PM ******/  
+DROP TABLE [dbo].[tbl_vendor]  
+GO  
+/****** Object:  Table [dbo].[tbl_product]    Script Date: 10/9/2018 2:47:29 PM ******/  
+DROP TABLE [dbo].[tbl_product]  
+GO  
+/****** Object:  Table [dbo].[tbl_department]    Script Date: 10/9/2018 2:47:29 PM ******/  
+DROP TABLE [dbo].[tbl_department]  
+GO  
+/****** Object:  Table [dbo].[tbl_department]    Script Date: 10/9/2018 2:47:29 PM ******/  
+SET ANSI_NULLS ON  
+GO  
+SET QUOTED_IDENTIFIER ON  
+GO  
+CREATE TABLE [dbo].[tbl_department](  
+ [DepartmentId] [int] IDENTITY(1,1) NOT NULL,  
+ [Name] [nvarchar](max) NOT NULL,  
+ [GroupName] [nvarchar](max) NOT NULL,  
+ CONSTRAINT [PK_tbl_department] PRIMARY KEY CLUSTERED   
+(  
+ [DepartmentId] ASC  
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]  
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]  
+  
+GO  
+/****** Object:  Table [dbo].[tbl_product]    Script Date: 10/9/2018 2:47:29 PM ******/  
+SET ANSI_NULLS ON  
+GO  
+SET QUOTED_IDENTIFIER ON  
+GO  
+CREATE TABLE [dbo].[tbl_product](  
+ [ProductID] [int] IDENTITY(1,1) NOT NULL,  
+ [Name] [nvarchar](max) NOT NULL,  
+ [ProductNumber] [nvarchar](max) NOT NULL,  
+ [Color] [nvarchar](max) NOT NULL,  
+ [Quantity] [int] NOT NULL,  
+ [Price] [money] NOT NULL,  
+ CONSTRAINT [PK_tbl_product] PRIMARY KEY CLUSTERED   
+(  
+ [ProductID] ASC  
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]  
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]  
+  
+GO  
+/****** Object:  Table [dbo].[tbl_vendor]    Script Date: 10/9/2018 2:47:29 PM ******/  
+SET ANSI_NULLS ON  
+GO  
+SET QUOTED_IDENTIFIER ON  
+GO  
+CREATE TABLE [dbo].[tbl_vendor](  
+ [VendorId] [int] IDENTITY(1,1) NOT NULL,  
+ [Name] [nvarchar](max) NOT NULL,  
+ CONSTRAINT [PK_tbl_vendor] PRIMARY KEY CLUSTERED   
+(  
+ [VendorId] ASC  
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]  
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]  
+  
+GO  
+SET IDENTITY_INSERT [dbo].[tbl_department] ON   
+  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (1, N'Engineering', N'Research and Development')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (2, N'Tool Design', N'Research and Development')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (3, N'Sales', N'Sales and Marketing')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (4, N'Marketing', N'Sales and Marketing')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (5, N'Purchasing', N'Inventory Management')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (6, N'Research and Development', N'Research and Development')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (7, N'Production', N'Manufacturing')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (8, N'Production Control', N'Manufacturing')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (9, N'Human Resources', N'Executive General and Administration')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (10, N'Finance', N'Executive General and Administration')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (11, N'Information Services', N'Executive General and Administration')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (12, N'Document Control', N'Quality Assurance')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (13, N'Quality Assurance', N'Quality Assurance')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (14, N'Facilities and Maintenance', N'Executive General and Administration')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (15, N'Shipping and Receiving', N'Inventory Management')  
+INSERT [dbo].[tbl_department] ([DepartmentId], [Name], [GroupName]) VALUES (16, N'Executive', N'Executive General and Administration')  
+SET IDENTITY_INSERT [dbo].[tbl_department] OFF  
+SET IDENTITY_INSERT [dbo].[tbl_product] ON   
+  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (680, N'HL Road Frame - Black, 58', N'FR-R92B-58', N'Black', 500, 1432.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (706, N'HL Road Frame - Red, 58', N'FR-R92R-58', N'Red', 500, 1432.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (707, N'Sport-100 Helmet, Red', N'HL-U509-R', N'Red', 4, 35.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (708, N'Sport-100 Helmet, Black', N'HL-U509', N'Black', 4, 35.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (709, N'Mountain Bike Socks, M', N'SO-B909-M', N'White', 4, 10.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (710, N'Mountain Bike Socks, L', N'SO-B909-L', N'White', 4, 10.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (711, N'Sport-100 Helmet, Blue', N'HL-U509-B', N'Blue', 4, 35.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (712, N'AWC Logo Cap', N'CA-1098', N'Multi', 4, 9.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (713, N'Long-Sleeve Logo Jersey, S', N'LJ-0192-S', N'Multi', 4, 50.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (714, N'Long-Sleeve Logo Jersey, M', N'LJ-0192-M', N'Multi', 4, 50.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (715, N'Long-Sleeve Logo Jersey, L', N'LJ-0192-L', N'Multi', 4, 50.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (716, N'Long-Sleeve Logo Jersey, XL', N'LJ-0192-X', N'Multi', 4, 50.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (717, N'HL Road Frame - Red, 62', N'FR-R92R-62', N'Red', 500, 1432.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (718, N'HL Road Frame - Red, 44', N'FR-R92R-44', N'Red', 500, 1432.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (719, N'HL Road Frame - Red, 48', N'FR-R92R-48', N'Red', 500, 1432.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (720, N'HL Road Frame - Red, 52', N'FR-R92R-52', N'Red', 500, 1432.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (721, N'HL Road Frame - Red, 56', N'FR-R92R-56', N'Red', 500, 1432.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (722, N'LL Road Frame - Black, 58', N'FR-R38B-58', N'Black', 500, 338.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (723, N'LL Road Frame - Black, 60', N'FR-R38B-60', N'Black', 500, 338.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (724, N'LL Road Frame - Black, 62', N'FR-R38B-62', N'Black', 500, 338.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (725, N'LL Road Frame - Red, 44', N'FR-R38R-44', N'Red', 500, 338.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (726, N'LL Road Frame - Red, 48', N'FR-R38R-48', N'Red', 500, 338.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (727, N'LL Road Frame - Red, 52', N'FR-R38R-52', N'Red', 500, 338.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (728, N'LL Road Frame - Red, 58', N'FR-R38R-58', N'Red', 500, 338.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (729, N'LL Road Frame - Red, 60', N'FR-R38R-60', N'Red', 500, 338.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (730, N'LL Road Frame - Red, 62', N'FR-R38R-62', N'Red', 500, 338.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (731, N'ML Road Frame - Red, 44', N'FR-R72R-44', N'Red', 500, 595.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (732, N'ML Road Frame - Red, 48', N'FR-R72R-48', N'Red', 500, 595.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (733, N'ML Road Frame - Red, 52', N'FR-R72R-52', N'Red', 500, 595.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (734, N'ML Road Frame - Red, 58', N'FR-R72R-58', N'Red', 500, 595.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (735, N'ML Road Frame - Red, 60', N'FR-R72R-60', N'Red', 500, 595.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (736, N'LL Road Frame - Black, 44', N'FR-R38B-44', N'Black', 500, 338.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (737, N'LL Road Frame - Black, 48', N'FR-R38B-48', N'Black', 500, 338.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (738, N'LL Road Frame - Black, 52', N'FR-R38B-52', N'Black', 500, 338.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (739, N'HL Mountain Frame - Silver, 42', N'FR-M94S-42', N'Silver', 500, 1365.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (740, N'HL Mountain Frame - Silver, 44', N'FR-M94S-44', N'Silver', 500, 1365.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (741, N'HL Mountain Frame - Silver, 48', N'FR-M94S-52', N'Silver', 500, 1365.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (742, N'HL Mountain Frame - Silver, 46', N'FR-M94S-46', N'Silver', 500, 1365.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (743, N'HL Mountain Frame - Black, 42', N'FR-M94B-42', N'Black', 500, 1350.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (744, N'HL Mountain Frame - Black, 44', N'FR-M94B-44', N'Black', 500, 1350.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (745, N'HL Mountain Frame - Black, 48', N'FR-M94B-48', N'Black', 500, 1350.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (746, N'HL Mountain Frame - Black, 46', N'FR-M94B-46', N'Black', 500, 1350.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (747, N'HL Mountain Frame - Black, 38', N'FR-M94B-38', N'Black', 500, 1350.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (748, N'HL Mountain Frame - Silver, 38', N'FR-M94S-38', N'Silver', 500, 1365.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (749, N'Road-150 Red, 62', N'BK-R93R-62', N'Red', 100, 3579.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (750, N'Road-150 Red, 44', N'BK-R93R-44', N'Red', 100, 3579.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (751, N'Road-150 Red, 48', N'BK-R93R-48', N'Red', 100, 3579.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (752, N'Road-150 Red, 52', N'BK-R93R-52', N'Red', 100, 3579.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (753, N'Road-150 Red, 56', N'BK-R93R-56', N'Red', 100, 3579.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (754, N'Road-450 Red, 58', N'BK-R68R-58', N'Red', 100, 1458.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (755, N'Road-450 Red, 60', N'BK-R68R-60', N'Red', 100, 1458.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (756, N'Road-450 Red, 44', N'BK-R68R-44', N'Red', 100, 1458.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (757, N'Road-450 Red, 48', N'BK-R68R-48', N'Red', 100, 1458.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (758, N'Road-450 Red, 52', N'BK-R68R-52', N'Red', 100, 1458.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (759, N'Road-650 Red, 58', N'BK-R50R-58', N'Red', 100, 783.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (760, N'Road-650 Red, 60', N'BK-R50R-60', N'Red', 100, 783.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (761, N'Road-650 Red, 62', N'BK-R50R-62', N'Red', 100, 783.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (762, N'Road-650 Red, 44', N'BK-R50R-44', N'Red', 100, 783.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (763, N'Road-650 Red, 48', N'BK-R50R-48', N'Red', 100, 783.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (764, N'Road-650 Red, 52', N'BK-R50R-52', N'Red', 100, 783.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (765, N'Road-650 Black, 58', N'BK-R50B-58', N'Black', 100, 783.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (766, N'Road-650 Black, 60', N'BK-R50B-60', N'Black', 100, 783.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (767, N'Road-650 Black, 62', N'BK-R50B-62', N'Black', 100, 783.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (768, N'Road-650 Black, 44', N'BK-R50B-44', N'Black', 100, 783.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (769, N'Road-650 Black, 48', N'BK-R50B-48', N'Black', 100, 783.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (770, N'Road-650 Black, 52', N'BK-R50B-52', N'Black', 100, 783.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (771, N'Mountain-100 Silver, 38', N'BK-M82S-38', N'Silver', 100, 3400.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (772, N'Mountain-100 Silver, 42', N'BK-M82S-42', N'Silver', 100, 3400.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (773, N'Mountain-100 Silver, 44', N'BK-M82S-44', N'Silver', 100, 3400.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (774, N'Mountain-100 Silver, 48', N'BK-M82S-48', N'Silver', 100, 3400.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (775, N'Mountain-100 Black, 38', N'BK-M82B-38', N'Black', 100, 3375.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (776, N'Mountain-100 Black, 42', N'BK-M82B-42', N'Black', 100, 3375.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (777, N'Mountain-100 Black, 44', N'BK-M82B-44', N'Black', 100, 3375.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (778, N'Mountain-100 Black, 48', N'BK-M82B-48', N'Black', 100, 3375.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (779, N'Mountain-200 Silver, 38', N'BK-M68S-38', N'Silver', 100, 2320.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (780, N'Mountain-200 Silver, 42', N'BK-M68S-42', N'Silver', 100, 2320.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (781, N'Mountain-200 Silver, 46', N'BK-M68S-46', N'Silver', 100, 2320.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (782, N'Mountain-200 Black, 38', N'BK-M68B-38', N'Black', 100, 2295.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (783, N'Mountain-200 Black, 42', N'BK-M68B-42', N'Black', 100, 2295.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (784, N'Mountain-200 Black, 46', N'BK-M68B-46', N'Black', 100, 2295.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (785, N'Mountain-300 Black, 38', N'BK-M47B-38', N'Black', 100, 1080.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (786, N'Mountain-300 Black, 40', N'BK-M47B-40', N'Black', 100, 1080.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (787, N'Mountain-300 Black, 44', N'BK-M47B-44', N'Black', 100, 1080.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (788, N'Mountain-300 Black, 48', N'BK-M47B-48', N'Black', 100, 1080.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (789, N'Road-250 Red, 44', N'BK-R89R-44', N'Red', 100, 2444.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (790, N'Road-250 Red, 48', N'BK-R89R-48', N'Red', 100, 2444.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (791, N'Road-250 Red, 52', N'BK-R89R-52', N'Red', 100, 2444.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (792, N'Road-250 Red, 58', N'BK-R89R-58', N'Red', 100, 2444.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (793, N'Road-250 Black, 44', N'BK-R89B-44', N'Black', 100, 2444.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (794, N'Road-250 Black, 48', N'BK-R89B-48', N'Black', 100, 2444.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (795, N'Road-250 Black, 52', N'BK-R89B-52', N'Black', 100, 2444.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (796, N'Road-250 Black, 58', N'BK-R89B-58', N'Black', 100, 2444.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (797, N'Road-550-W Yellow, 38', N'BK-R64Y-38', N'Yellow', 100, 1121.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (798, N'Road-550-W Yellow, 40', N'BK-R64Y-40', N'Yellow', 100, 1121.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (799, N'Road-550-W Yellow, 42', N'BK-R64Y-42', N'Yellow', 100, 1121.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (800, N'Road-550-W Yellow, 44', N'BK-R64Y-44', N'Yellow', 100, 1121.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (801, N'Road-550-W Yellow, 48', N'BK-R64Y-48', N'Yellow', 100, 1121.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (814, N'ML Mountain Frame - Black, 38', N'FR-M63B-38', N'Black', 500, 349.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (815, N'LL Mountain Front Wheel', N'FW-M423', N'Black', 500, 61.0000)  
+GO  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (816, N'ML Mountain Front Wheel', N'FW-M762', N'Black', 500, 210.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (817, N'HL Mountain Front Wheel', N'FW-M928', N'Black', 500, 301.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (818, N'LL Road Front Wheel', N'FW-R623', N'Black', 500, 86.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (819, N'ML Road Front Wheel', N'FW-R762', N'Black', 500, 249.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (820, N'HL Road Front Wheel', N'FW-R820', N'Black', 500, 331.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (821, N'Touring Front Wheel', N'FW-T905', N'Black', 500, 219.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (822, N'ML Road Frame-W - Yellow, 38', N'FR-R72Y-38', N'Yellow', 500, 595.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (823, N'LL Mountain Rear Wheel', N'RW-M423', N'Black', 500, 88.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (824, N'ML Mountain Rear Wheel', N'RW-M762', N'Black', 500, 237.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (825, N'HL Mountain Rear Wheel', N'RW-M928', N'Black', 500, 328.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (826, N'LL Road Rear Wheel', N'RW-R623', N'Black', 500, 113.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (827, N'ML Road Rear Wheel', N'RW-R762', N'Black', 500, 276.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (828, N'HL Road Rear Wheel', N'RW-R820', N'Black', 500, 358.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (829, N'Touring Rear Wheel', N'RW-T905', N'Black', 500, 246.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (830, N'ML Mountain Frame - Black, 40', N'FR-M63B-40', N'Black', 500, 349.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (831, N'ML Mountain Frame - Black, 44', N'FR-M63B-44', N'Black', 500, 349.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (832, N'ML Mountain Frame - Black, 48', N'FR-M63B-48', N'Black', 500, 349.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (833, N'ML Road Frame-W - Yellow, 40', N'FR-R72Y-40', N'Yellow', 500, 595.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (834, N'ML Road Frame-W - Yellow, 42', N'FR-R72Y-42', N'Yellow', 500, 595.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (835, N'ML Road Frame-W - Yellow, 44', N'FR-R72Y-44', N'Yellow', 500, 595.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (836, N'ML Road Frame-W - Yellow, 48', N'FR-R72Y-48', N'Yellow', 500, 595.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (837, N'HL Road Frame - Black, 62', N'FR-R92B-62', N'Black', 500, 1432.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (838, N'HL Road Frame - Black, 44', N'FR-R92B-44', N'Black', 500, 1432.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (839, N'HL Road Frame - Black, 48', N'FR-R92B-48', N'Black', 500, 1432.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (840, N'HL Road Frame - Black, 52', N'FR-R92B-52', N'Black', 500, 1432.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (841, N'Men''s Sports Shorts, S', N'SH-M897-S', N'Black', 4, 60.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (842, N'Touring-Panniers, Large', N'PA-T100', N'Grey', 4, 125.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (849, N'Men''s Sports Shorts, M', N'SH-M897-M', N'Black', 4, 60.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (850, N'Men''s Sports Shorts, L', N'SH-M897-L', N'Black', 4, 60.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (851, N'Men''s Sports Shorts, XL', N'SH-M897-X', N'Black', 4, 60.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (852, N'Women''s Tights, S', N'TG-W091-S', N'Black', 4, 75.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (853, N'Women''s Tights, M', N'TG-W091-M', N'Black', 4, 75.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (854, N'Women''s Tights, L', N'TG-W091-L', N'Black', 4, 75.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (855, N'Men''s Bib-Shorts, S', N'SB-M891-S', N'Multi', 4, 90.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (856, N'Men''s Bib-Shorts, M', N'SB-M891-M', N'Multi', 4, 90.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (857, N'Men''s Bib-Shorts, L', N'SB-M891-L', N'Multi', 4, 90.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (858, N'Half-Finger Gloves, S', N'GL-H102-S', N'Black', 4, 25.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (859, N'Half-Finger Gloves, M', N'GL-H102-M', N'Black', 4, 25.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (860, N'Half-Finger Gloves, L', N'GL-H102-L', N'Black', 4, 25.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (861, N'Full-Finger Gloves, S', N'GL-F110-S', N'Black', 4, 38.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (862, N'Full-Finger Gloves, M', N'GL-F110-M', N'Black', 4, 38.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (863, N'Full-Finger Gloves, L', N'GL-F110-L', N'Black', 4, 38.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (864, N'Classic Vest, S', N'VE-C304-S', N'Blue', 4, 64.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (865, N'Classic Vest, M', N'VE-C304-M', N'Blue', 4, 64.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (866, N'Classic Vest, L', N'VE-C304-L', N'Blue', 4, 64.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (867, N'Women''s Mountain Shorts, S', N'SH-W890-S', N'Black', 4, 70.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (868, N'Women''s Mountain Shorts, M', N'SH-W890-M', N'Black', 4, 70.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (869, N'Women''s Mountain Shorts, L', N'SH-W890-L', N'Black', 4, 70.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (874, N'Racing Socks, M', N'SO-R809-M', N'White', 4, 9.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (875, N'Racing Socks, L', N'SO-R809-L', N'White', 4, 9.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (880, N'Hydration Pack - 70 oz.', N'HY-1023-70', N'Silver', 4, 55.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (881, N'Short-Sleeve Classic Jersey, S', N'SJ-0194-S', N'Yellow', 4, 54.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (882, N'Short-Sleeve Classic Jersey, M', N'SJ-0194-M', N'Yellow', 4, 54.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (883, N'Short-Sleeve Classic Jersey, L', N'SJ-0194-L', N'Yellow', 4, 54.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (884, N'Short-Sleeve Classic Jersey, XL', N'SJ-0194-X', N'Yellow', 4, 54.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (885, N'HL Touring Frame - Yellow, 60', N'FR-T98Y-60', N'Yellow', 500, 1004.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (886, N'LL Touring Frame - Yellow, 62', N'FR-T67Y-62', N'Yellow', 500, 334.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (887, N'HL Touring Frame - Yellow, 46', N'FR-T98Y-46', N'Yellow', 500, 1004.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (888, N'HL Touring Frame - Yellow, 50', N'FR-T98Y-50', N'Yellow', 500, 1004.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (889, N'HL Touring Frame - Yellow, 54', N'FR-T98Y-54', N'Yellow', 500, 1004.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (890, N'HL Touring Frame - Blue, 46', N'FR-T98U-46', N'Blue', 500, 1004.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (891, N'HL Touring Frame - Blue, 50', N'FR-T98U-50', N'Blue', 500, 1004.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (892, N'HL Touring Frame - Blue, 54', N'FR-T98U-54', N'Blue', 500, 1004.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (893, N'HL Touring Frame - Blue, 60', N'FR-T98U-60', N'Blue', 500, 1004.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (894, N'Rear Derailleur', N'RD-2308', N'Silver', 500, 122.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (895, N'LL Touring Frame - Blue, 50', N'FR-T67U-50', N'Blue', 500, 334.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (896, N'LL Touring Frame - Blue, 54', N'FR-T67U-54', N'Blue', 500, 334.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (897, N'LL Touring Frame - Blue, 58', N'FR-T67U-58', N'Blue', 500, 334.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (898, N'LL Touring Frame - Blue, 62', N'FR-T67U-62', N'Blue', 500, 334.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (899, N'LL Touring Frame - Yellow, 44', N'FR-T67Y-44', N'Yellow', 500, 334.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (900, N'LL Touring Frame - Yellow, 50', N'FR-T67Y-50', N'Yellow', 500, 334.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (901, N'LL Touring Frame - Yellow, 54', N'FR-T67Y-54', N'Yellow', 500, 334.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (902, N'LL Touring Frame - Yellow, 58', N'FR-T67Y-58', N'Yellow', 500, 334.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (903, N'LL Touring Frame - Blue, 44', N'FR-T67U-44', N'Blue', 500, 334.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (904, N'ML Mountain Frame-W - Silver, 40', N'FR-M63S-40', N'Silver', 500, 365.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (905, N'ML Mountain Frame-W - Silver, 42', N'FR-M63S-42', N'Silver', 500, 365.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (906, N'ML Mountain Frame-W - Silver, 46', N'FR-M63S-46', N'Silver', 500, 365.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (907, N'Rear Brakes', N'RB-9231', N'Silver', 500, 107.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (917, N'LL Mountain Frame - Silver, 42', N'FR-M21S-42', N'Silver', 500, 265.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (918, N'LL Mountain Frame - Silver, 44', N'FR-M21S-44', N'Silver', 500, 265.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (919, N'LL Mountain Frame - Silver, 48', N'FR-M21S-48', N'Silver', 500, 265.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (920, N'LL Mountain Frame - Silver, 52', N'FR-M21S-52', N'Silver', 500, 265.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (924, N'LL Mountain Frame - Black, 42', N'FR-M21B-42', N'Black', 500, 250.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (925, N'LL Mountain Frame - Black, 44', N'FR-M21B-44', N'Black', 500, 250.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (926, N'LL Mountain Frame - Black, 48', N'FR-M21B-48', N'Black', 500, 250.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (927, N'LL Mountain Frame - Black, 52', N'FR-M21B-52', N'Black', 500, 250.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (935, N'LL Mountain Pedal', N'PD-M282', N'Silver/Black', 500, 41.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (936, N'ML Mountain Pedal', N'PD-M340', N'Silver/Black', 500, 63.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (937, N'HL Mountain Pedal', N'PD-M562', N'Silver/Black', 500, 81.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (938, N'LL Road Pedal', N'PD-R347', N'Silver/Black', 500, 41.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (939, N'ML Road Pedal', N'PD-R563', N'Silver/Black', 500, 63.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (940, N'HL Road Pedal', N'PD-R853', N'Silver/Black', 500, 81.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (941, N'Touring Pedal', N'PD-T852', N'Silver/Black', 500, 81.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (942, N'ML Mountain Frame-W - Silver, 38', N'FR-M63S-38', N'Silver', 500, 365.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (943, N'LL Mountain Frame - Black, 40', N'FR-M21B-40', N'Black', 500, 250.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (944, N'LL Mountain Frame - Silver, 40', N'FR-M21S-40', N'Silver', 500, 265.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (945, N'Front Derailleur', N'FD-2342', N'Silver', 500, 92.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (948, N'Front Brakes', N'FB-9873', N'Silver', 500, 107.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (949, N'LL Crankset', N'CS-4759', N'Black', 500, 176.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (950, N'ML Crankset', N'CS-6583', N'Black', 500, 257.0000)  
+GO  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (951, N'HL Crankset', N'CS-9183', N'Black', 500, 405.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (952, N'Chain', N'CH-0234', N'Silver', 500, 21.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (953, N'Touring-2000 Blue, 60', N'BK-T44U-60', N'Blue', 100, 1215.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (954, N'Touring-1000 Yellow, 46', N'BK-T79Y-46', N'Yellow', 100, 2385.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (955, N'Touring-1000 Yellow, 50', N'BK-T79Y-50', N'Yellow', 100, 2385.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (956, N'Touring-1000 Yellow, 54', N'BK-T79Y-54', N'Yellow', 100, 2385.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (957, N'Touring-1000 Yellow, 60', N'BK-T79Y-60', N'Yellow', 100, 2385.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (958, N'Touring-3000 Blue, 54', N'BK-T18U-54', N'Blue', 100, 743.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (959, N'Touring-3000 Blue, 58', N'BK-T18U-58', N'Blue', 100, 743.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (960, N'Touring-3000 Blue, 62', N'BK-T18U-62', N'Blue', 100, 743.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (961, N'Touring-3000 Yellow, 44', N'BK-T18Y-44', N'Yellow', 100, 743.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (962, N'Touring-3000 Yellow, 50', N'BK-T18Y-50', N'Yellow', 100, 743.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (963, N'Touring-3000 Yellow, 54', N'BK-T18Y-54', N'Yellow', 100, 743.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (964, N'Touring-3000 Yellow, 58', N'BK-T18Y-58', N'Yellow', 100, 743.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (965, N'Touring-3000 Yellow, 62', N'BK-T18Y-62', N'Yellow', 100, 743.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (966, N'Touring-1000 Blue, 46', N'BK-T79U-46', N'Blue', 100, 2385.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (967, N'Touring-1000 Blue, 50', N'BK-T79U-50', N'Blue', 100, 2385.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (968, N'Touring-1000 Blue, 54', N'BK-T79U-54', N'Blue', 100, 2385.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (969, N'Touring-1000 Blue, 60', N'BK-T79U-60', N'Blue', 100, 2385.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (970, N'Touring-2000 Blue, 46', N'BK-T44U-46', N'Blue', 100, 1215.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (971, N'Touring-2000 Blue, 50', N'BK-T44U-50', N'Blue', 100, 1215.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (972, N'Touring-2000 Blue, 54', N'BK-T44U-54', N'Blue', 100, 1215.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (973, N'Road-350-W Yellow, 40', N'BK-R79Y-40', N'Yellow', 100, 1701.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (974, N'Road-350-W Yellow, 42', N'BK-R79Y-42', N'Yellow', 100, 1701.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (975, N'Road-350-W Yellow, 44', N'BK-R79Y-44', N'Yellow', 100, 1701.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (976, N'Road-350-W Yellow, 48', N'BK-R79Y-48', N'Yellow', 100, 1701.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (977, N'Road-750 Black, 58', N'BK-R19B-58', N'Black', 100, 540.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (978, N'Touring-3000 Blue, 44', N'BK-T18U-44', N'Blue', 100, 743.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (979, N'Touring-3000 Blue, 50', N'BK-T18U-50', N'Blue', 100, 743.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (980, N'Mountain-400-W Silver, 38', N'BK-M38S-38', N'Silver', 100, 770.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (981, N'Mountain-400-W Silver, 40', N'BK-M38S-40', N'Silver', 100, 770.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (982, N'Mountain-400-W Silver, 42', N'BK-M38S-42', N'Silver', 100, 770.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (983, N'Mountain-400-W Silver, 46', N'BK-M38S-46', N'Silver', 100, 770.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (984, N'Mountain-500 Silver, 40', N'BK-M18S-40', N'Silver', 100, 565.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (985, N'Mountain-500 Silver, 42', N'BK-M18S-42', N'Silver', 100, 565.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (986, N'Mountain-500 Silver, 44', N'BK-M18S-44', N'Silver', 100, 565.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (987, N'Mountain-500 Silver, 48', N'BK-M18S-48', N'Silver', 100, 565.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (988, N'Mountain-500 Silver, 52', N'BK-M18S-52', N'Silver', 100, 565.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (989, N'Mountain-500 Black, 40', N'BK-M18B-40', N'Black', 100, 540.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (990, N'Mountain-500 Black, 42', N'BK-M18B-42', N'Black', 100, 540.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (991, N'Mountain-500 Black, 44', N'BK-M18B-44', N'Black', 100, 540.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (992, N'Mountain-500 Black, 48', N'BK-M18B-48', N'Black', 100, 540.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (993, N'Mountain-500 Black, 52', N'BK-M18B-52', N'Black', 100, 540.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (997, N'Road-750 Black, 44', N'BK-R19B-44', N'Black', 100, 540.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (998, N'Road-750 Black, 48', N'BK-R19B-48', N'Black', 100, 540.0000)  
+INSERT [dbo].[tbl_product] ([ProductID], [Name], [ProductNumber], [Color], [Quantity], [Price]) VALUES (999, N'Road-750 Black, 52', N'BK-R19B-52', N'Black', 100, 540.0000)  
+SET IDENTITY_INSERT [dbo].[tbl_product] OFF  
+SET IDENTITY_INSERT [dbo].[tbl_vendor] ON   
+  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1492, N'Australia Bike Retailer')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1494, N'Allenson Cycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1496, N'Advanced Bicycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1498, N'Trikes, Inc.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1500, N'Morgan Bike Accessories')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1502, N'Cycling Master')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1504, N'Chicago Rent-All')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1506, N'Greenwood Athletic Company')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1508, N'Compete Enterprises, Inc')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1510, N'International')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1512, N'Light Speed')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1514, N'Training Systems')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1516, N'Gardner Touring Cycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1518, N'International Trek Center')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1520, N'G & K Bicycle Corp.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1522, N'First National Sport Co.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1524, N'Recreation Place')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1526, N'International Bicycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1528, N'Image Makers Bike Center')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1530, N'Comfort Road Bicycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1532, N'Knopfler Cycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1534, N'Ready Rentals')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1536, N'Cruger Bike Company')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1538, N'Vista Road Bikes')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1540, N'Bergeron Off-Roads')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1542, N'Hill''s Bicycle Service')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1544, N'Circuit Cycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1546, N'Green Lake Bike Company')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1548, N'Consumer Cycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1550, N'Merit Bikes')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1552, N'Sports House')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1554, N'WestAmerica Bicycle Co.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1556, N'West Junction Cycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1558, N'Marsh')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1560, N'Capital Road Cycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1562, N'Norstan Bike Hut')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1564, N'Illinois Trek & Clothing')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1566, N'Burnett Road Warriors')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1568, N'Custom Frames, Inc.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1570, N'First Rate Bicycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1572, N'National Bike Association')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1574, N'Jeff''s Sporting Goods')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1576, N'Superior Bicycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1578, N'Vision Cycles, Inc.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1580, N'Litware, Inc.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1582, N'Inner City Bikes')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1584, N'Trey Research')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1586, N'Mitchell Sports')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1588, N'Signature Cycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1590, N'SUPERSALES INC.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1592, N'Lindell')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1594, N'Fitness Association')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1596, N'A. Datum Corporation')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1598, N'Continental Pro Cycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1600, N'Federal Sport')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1602, N'Beaumont Bikes')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1604, N'Bike Satellite Inc.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1606, N'Northwind Traders')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1608, N'Sport Playground')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1610, N'Hybrid Bicycle Center')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1612, N'Midwest Sport, Inc.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1614, N'Reliance Fitness, Inc.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1616, N'Aurora Bike Center')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1618, N'Metro Sport Equipment')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1620, N'Lakewood Bicycle')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1622, N'Speed Corporation')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1624, N'Competition Bike Training Systems')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1626, N'Hill Bicycle Center')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1628, N'Bicycle Specialists')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1630, N'Indiana Bicycle Center')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1632, N'Sport Fan Co.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1634, N'GMA Ski & Bike')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1636, N'Integrated Sport Products')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1638, N'Inline Accessories')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1640, N'Legend Cycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1642, N'Electronic Bike Co.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1644, N'International Sport Assoc.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1646, N'Electronic Bike Repair & Supplies')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1648, N'Wide World Importers')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1650, N'American Bicycles and Wheels')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1652, N'Victory Bikes')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1654, N'American Bikes')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1656, N'Mountain Works')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1658, N'Crowley Sport')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1660, N'Magic Cycles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1662, N'Northern Bike Travel')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1664, N'Anderson''s Custom Bikes')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1666, N'Leaf River Terrain')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1668, N'Touring Equipment Center')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1670, N'Holiday Skate & Cycle')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1672, N'Expert Bike Co')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1674, N'Varsity Sport Co.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1676, N'Team Athletic Co.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1678, N'Proseware, Inc.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1680, N'Jackson Authority')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1682, N'Premier Sport, Inc.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1684, N'Professional Athletic Consultants')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1686, N'Pro Sport Industries')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1688, N'Wood Fitness')  
+GO  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1690, N'Bloomington Multisport')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1692, N'Carlson Specialties')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1694, N'Compete, Inc.')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1696, N'Chicago City Saddles')  
+INSERT [dbo].[tbl_vendor] ([VendorId], [Name]) VALUES (1698, N'Business Equipment Center')  
+SET IDENTITY_INSERT [dbo].[tbl_vendor] OFF  
+/****** Object:  StoredProcedure [dbo].[GetProductByID]    Script Date: 10/9/2018 2:47:29 PM ******/  
+SET ANSI_NULLS ON  
+GO  
+SET QUOTED_IDENTIFIER ON  
+GO  
+-- =============================================  
+-- Author:  <Author,,Name>  
+-- Create date: <Create Date,,>  
+-- Description: <Description,,>  
+-- =============================================  
+CREATE PROCEDURE [dbo].[GetProductByID]  
+ @product_ID INTEGER  
+AS  
+BEGIN  
+ SELECT tbl_product.ProductID,  
+     tbl_product.Name,  
+     tbl_product.ProductNumber,  
+     tbl_product.Price,  
+     tbl_product.Quantity,  
+     tbl_product.Color  
+    FROM tbl_product  
+ WHERE tbl_product.ProductID = @product_ID  
+END  
+  
+GO  
+/****** Object:  StoredProcedure [dbo].[GetProductByPriceGreaterThan1000]    Script Date: 10/9/2018 2:47:29 PM ******/  
+SET ANSI_NULLS ON  
+GO  
+SET QUOTED_IDENTIFIER ON  
+GO  
+-- =============================================  
+-- Author:  <Author,,Name>  
+-- Create date: <Create Date,,>  
+-- Description: <Description,,>  
+-- =============================================  
+CREATE PROCEDURE [dbo].[GetProductByPriceGreaterThan1000]  
+AS  
+BEGIN  
+ SELECT tbl_product.ProductID,  
+     tbl_product.Name,  
+     tbl_product.Price  
+    FROM tbl_product  
+ WHERE tbl_product.Price >= 1000  
+END  
+  
+GO 
